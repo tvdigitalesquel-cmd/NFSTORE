@@ -1,1 +1,704 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centro de Apps · Entretenimiento Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #F97316;
+    --orange-dim: #EA580C;
+    --orange-glow: rgba(249,115,22,0.15);
+    --bg: #0C0C0E;
+    --bg2: #131316;
+    --bg3: #1A1A1F;
+    --bg4: #222228;
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(249,115,22,0.4);
+    --text: #F1F0EE;
+    --text2: #A09FA0;
+    --text3: #666;
+    --green: #22C55E;
+    --red: #F87171;
+    --blue: #60A5FA;
+    --purple: #A78BFA;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 3.5rem 1.5rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 500px; height: 300px;
+    background: radial-gradient(ellipse, rgba(249,115,22,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--orange-glow);
+    border: 1px solid rgba(249,115,22,0.3);
+    color: var(--orange);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    padding: 5px 14px; border-radius: 999px;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .hero h1 span { color: var(--orange); }
+  .hero p {
+    color: var(--text2);
+    font-size: 1rem;
+    max-width: 520px;
+    margin: 0 auto 2rem;
+  }
+  .hero-stats {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--orange);
+    display: block;
+  }
+  .stat-label { font-size: 12px; color: var(--text3); letter-spacing: 0.05em; }
+
+  /* NAV */
+  nav {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 1.5rem;
+    display: flex; gap: 0; overflow-x: auto;
+    position: sticky; top: 0; z-index: 100;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    flex-shrink: 0;
+    background: none; border: none; cursor: pointer;
+    color: var(--text3);
+    font-size: 13px; font-weight: 500;
+    padding: 14px 18px;
+    border-bottom: 2px solid transparent;
+    transition: color .2s, border-color .2s;
+    white-space: nowrap;
+    text-decoration: none; display: inline-block;
+  }
+  .nav-btn:hover, .nav-btn.active {
+    color: var(--orange);
+    border-bottom-color: var(--orange);
+  }
+
+  /* MAIN */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+    display: flex; flex-direction: column; gap: 2rem;
+  }
+
+  /* APP CARD */
+  .app-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color .25s;
+    scroll-margin-top: 56px;
+  }
+  .app-card:hover { border-color: var(--border-hover); }
+
+  .card-header {
+    padding: 1.5rem 1.5rem 1rem;
+    display: flex; align-items: flex-start; gap: 1rem;
+  }
+  .app-icon {
+    width: 56px; height: 56px; border-radius: 14px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 900;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .icon-orange { background: linear-gradient(135deg, #F97316, #EA580C); color: #fff; }
+  .icon-blue   { background: linear-gradient(135deg, #3B82F6, #1D4ED8); color: #fff; }
+  .icon-purple { background: linear-gradient(135deg, #8B5CF6, #6D28D9); color: #fff; }
+  .icon-teal   { background: linear-gradient(135deg, #14B8A6, #0F766E); color: #fff; }
+
+  .card-title-group { flex: 1; }
+  .app-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.25rem; font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 3px;
+  }
+  .app-tagline { font-size: 13px; color: var(--text2); }
+
+  .badge-row {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 8px;
+  }
+  .badge {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+    padding: 3px 10px; border-radius: 999px;
+    text-transform: uppercase;
+  }
+  .badge-orange { background: var(--orange-glow); color: var(--orange); border: 1px solid rgba(249,115,22,0.25); }
+  .badge-green  { background: rgba(34,197,94,0.1); color: var(--green); border: 1px solid rgba(34,197,94,0.2); }
+  .badge-blue   { background: rgba(96,165,250,0.1); color: var(--blue); border: 1px solid rgba(96,165,250,0.2); }
+  .badge-purple { background: rgba(167,139,250,0.1); color: var(--purple); border: 1px solid rgba(167,139,250,0.2); }
+  .badge-red    { background: rgba(248,113,113,0.1); color: var(--red); border: 1px solid rgba(248,113,113,0.2); }
+
+  /* FEATURES GRID */
+  .features-grid {
+    padding: 0 1.5rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 8px;
+  }
+  .feat {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 13px;
+    display: flex; align-items: center; gap: 8px;
+    color: var(--text2);
+  }
+  .feat-icon { font-size: 16px; flex-shrink: 0; }
+
+  /* DIVIDER */
+  .card-divider {
+    margin: 0 1.5rem;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+
+  /* DOWNLOAD SECTION */
+  .download-section {
+    padding: 1.25rem 1.5rem;
+  }
+  .dl-section-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text3);
+    margin-bottom: 1rem;
+  }
+  .dl-blocks {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .dl-block {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+  }
+  .dl-block-title {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--text2);
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .dl-row {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 8px;
+    margin-bottom: 6px;
+  }
+  .dl-row:last-child { margin-bottom: 0; }
+  .dl-label { font-size: 12px; color: var(--text3); }
+  .dl-code {
+    font-family: 'Space Mono', 'Courier New', monospace;
+    font-size: 16px; font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 0.05em;
+    background: var(--orange-glow);
+    border: 1px solid rgba(249,115,22,0.2);
+    padding: 4px 12px; border-radius: 8px;
+  }
+  .dl-link {
+    font-size: 12px; color: var(--blue);
+    word-break: break-all;
+    text-decoration: none;
+  }
+  .dl-link:hover { text-decoration: underline; }
+
+  /* DOWNLOAD BUTTON */
+  .btn-download {
+    display: block; width: 100%;
+    background: linear-gradient(135deg, var(--orange), var(--orange-dim));
+    color: #fff;
+    font-size: 14px; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 13px;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 12px;
+    border: none; cursor: pointer;
+    transition: opacity .2s, transform .1s;
+  }
+  .btn-download:hover { opacity: .9; }
+  .btn-download:active { transform: scale(0.99); }
+  .btn-download.outline {
+    background: none;
+    border: 1px solid rgba(249,115,22,0.4);
+    color: var(--orange);
+  }
+  .btn-coming {
+    display: block; width: 100%;
+    background: var(--bg4);
+    color: var(--text3);
+    font-size: 13px; font-weight: 600;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 12px;
+    border: 1px solid var(--border);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* PIN */
+  .pin-row {
+    display: flex; align-items: center; gap: 8px;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: rgba(248,113,113,0.06);
+    border: 1px solid rgba(248,113,113,0.15);
+    border-radius: 8px;
+    font-size: 12px; color: var(--red);
+  }
+  .pin-row strong { font-weight: 700; letter-spacing: 0.05em; }
+
+  /* DEMO PILL */
+  .demo-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; color: var(--green); font-weight: 600;
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: 999px; padding: 4px 12px;
+    margin-top: 10px;
+  }
+
+  /* COMPATIBILITY */
+  .compat-row {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    padding: 0 1.5rem 1.25rem;
+  }
+  .compat-tag {
+    font-size: 12px; color: var(--text2);
+    background: var(--bg4);
+    border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 6px;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .compat-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
+
+  /* VERSION */
+  .version-bar {
+    padding: 10px 1.5rem;
+    background: var(--bg3);
+    border-top: 1px solid var(--border);
+    font-size: 11px; color: var(--text3);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--text3);
+  }
+
+  @media (max-width: 500px) {
+    .hero h1 { font-size: 1.75rem; }
+    .card-header { gap: .75rem; }
+    .app-icon { width: 48px; height: 48px; font-size: 22px; }
+    .app-name { font-size: 1.1rem; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📺 Centro de Apps</div>
+  <h1>Entretenimiento<br><span>Premium</span></h1>
+  <p>Las mejores aplicaciones de streaming, TV en vivo y contenido para tus dispositivos Android.</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">+25K</span><span class="stat-label">Películas</span></div>
+    <div class="stat"><span class="stat-num">+10K</span><span class="stat-label">Series</span></div>
+    <div class="stat"><span class="stat-num">+5K</span><span class="stat-label">Canales en vivo</span></div>
+    <div class="stat"><span class="stat-num">4</span><span class="stat-label">Apps disponibles</span></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-btn" href="#flujo-tv">Flujo TV</a>
+  <a class="nav-btn" href="#tv-digital">TV Digital Premium</a>
+  <a class="nav-btn" href="#suffixed">Suffixed</a>
+  <a class="nav-btn" href="#caelum">Caelum + más</a>
+</nav>
+
+<main>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 1. FLUJO TV -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="app-card" id="flujo-tv">
+    <div class="card-header">
+      <div class="app-icon icon-orange">F</div>
+      <div class="card-title-group">
+        <div class="app-name">Flujo TV</div>
+        <div class="app-tagline">Entretenimiento premium · Todo en un solo lugar</div>
+        <div class="badge-row">
+          <span class="badge badge-orange">⚡ 4K disponible</span>
+          <span class="badge badge-green">✓ 3 dispositivos</span>
+          <span class="badge badge-blue">v8.5.3</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feat"><span class="feat-icon">🎬</span> +25.000 películas</div>
+      <div class="feat"><span class="feat-icon">📺</span> +10.000 series</div>
+      <div class="feat"><span class="feat-icon">🌎</span> +5.000 canales en vivo</div>
+      <div class="feat"><span class="feat-icon">⚽</span> Deportes en directo</div>
+      <div class="feat"><span class="feat-icon">🎭</span> Toda la familia</div>
+      <div class="feat"><span class="feat-icon">🔞</span> Sección adultos</div>
+      <div class="feat"><span class="feat-icon">👤</span> Perfil personalizado</div>
+      <div class="feat"><span class="feat-icon">🛡️</span> Garantía 30 días</div>
+    </div>
+
+    <div class="compat-row">
+      <span class="compat-tag"><span class="compat-dot"></span> Android TV</span>
+      <span class="compat-tag"><span class="compat-dot"></span> Google TV</span>
+      <span class="compat-tag"><span class="compat-dot"></span> TV Box</span>
+      <span class="compat-tag"><span class="compat-dot"></span> Celular Android</span>
+      <span class="compat-tag"><span class="compat-dot"></span> Tablet Android</span>
+    </div>
+
+    <hr class="card-divider">
+
+    <div class="download-section">
+      <div class="dl-section-title">📥 Opciones de descarga</div>
+      <div class="dl-blocks">
+
+        <div class="dl-block">
+          <div class="dl-block-title">📺 Android TV / Google TV</div>
+          <div class="dl-row">
+            <span class="dl-label">Código Downloader</span>
+            <span class="dl-code">5798709</span>
+          </div>
+          <div class="dl-row">
+            <span class="dl-label">Link directo</span>
+            <a class="dl-link" href="https://go.aftvnews.com/5798709" target="_blank">go.aftvnews.com/5798709</a>
+          </div>
+          <a class="btn-download" href="https://go.aftvnews.com/5798709" target="_blank">📥 Descargar para TV</a>
+        </div>
+
+        <div class="dl-block">
+          <div class="dl-block-title">📱 Móvil / Celular Android</div>
+          <div class="dl-row">
+            <span class="dl-label">APK directo</span>
+            <a class="dl-link" href="https://app.flujotv.app/apk/flujo_mobile_v8.5.3.apk" target="_blank">app.flujotv.app/apk/flujo_mobile_v8.5.3.apk</a>
+          </div>
+          <a class="btn-download" href="https://app.flujotv.app/apk/flujo_mobile_v8.5.3.apk" target="_blank">📥 Descargar para Móvil</a>
+        </div>
+
+      </div>
+      <div class="pin-row">🔞 <strong>Pin adultos: 1234</strong> · Mantenlo privado</div>
+    </div>
+
+    <div class="version-bar">
+      <span>Versión 8.5.3</span>
+      <span>Actualizado: 08/06/2026</span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 2. TV DIGITAL PREMIUM -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="app-card" id="tv-digital">
+    <div class="card-header">
+      <div class="app-icon icon-blue">T</div>
+      <div class="card-title-group">
+        <div class="app-name">TV Digital Premium</div>
+        <div class="app-tagline">Fútbol, canales nacionales e internacionales</div>
+        <div class="badge-row">
+          <span class="badge badge-green">🎁 1h gratis</span>
+          <span class="badge badge-blue">⚽ Pack fútbol</span>
+          <span class="badge badge-orange">3 dispositivos</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feat"><span class="feat-icon">⚽</span> Pack Fútbol completo</div>
+      <div class="feat"><span class="feat-icon">🌎</span> Canales nacionales e int.</div>
+      <div class="feat"><span class="feat-icon">🎬</span> Películas y series</div>
+      <div class="feat"><span class="feat-icon">⭐</span> Canales premium</div>
+      <div class="feat"><span class="feat-icon">🔞</span> Canales para adultos</div>
+      <div class="feat"><span class="feat-icon">📱</span> Hasta 3 dispositivos</div>
+    </div>
+
+    <div class="compat-row">
+      <span class="compat-tag"><span class="compat-dot"></span> Celular Android</span>
+      <span class="compat-tag"><span class="compat-dot"></span> Smart TV Android</span>
+      <span class="compat-tag"><span class="compat-dot"></span> Google TV</span>
+      <span class="compat-tag"><span class="compat-dot"></span> TV Box</span>
+      <span class="compat-tag"><span class="compat-dot"></span> Tablet Android</span>
+    </div>
+
+    <hr class="card-divider">
+
+    <div class="download-section">
+      <div class="dl-section-title">📥 Opciones de descarga</div>
+      <div class="dl-blocks">
+
+        <div class="dl-block">
+          <div class="dl-block-title">📺 TV, Celular y Tablet</div>
+          <div class="dl-row">
+            <span class="dl-label">Código Downloader</span>
+            <span class="dl-code">6979360</span>
+          </div>
+          <div class="dl-row">
+            <span class="dl-label">Link directo</span>
+            <a class="dl-link" href="http://aftv.news/6979360" target="_blank">aftv.news/6979360</a>
+          </div>
+          <a class="btn-download" href="http://aftv.news/6979360" target="_blank">📥 Descargar (TV / Celular)</a>
+        </div>
+
+        <div class="dl-block">
+          <div class="dl-block-title">📦 TV Box</div>
+          <div class="dl-row">
+            <span class="dl-label">Código Downloader</span>
+            <span class="dl-code">8822404</span>
+          </div>
+          <div class="dl-row">
+            <span class="dl-label">Link directo</span>
+            <a class="dl-link" href="http://aftv.news/8822404" target="_blank">aftv.news/8822404</a>
+          </div>
+          <a class="btn-download" href="http://aftv.news/8822404" target="_blank">📥 Descargar (TV Box)</a>
+        </div>
+
+      </div>
+      <div class="pin-row">🔞 <strong>Código XXX: 6969</strong> · Mantenlo privado</div>
+      <div class="demo-pill">🎁 Enviá "DEMO" para tu prueba gratuita de 1 hora</div>
+    </div>
+
+    <div class="version-bar">
+      <span>TV Digital Premium</span>
+      <span>🏆 El Mundial se vive acá</span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 3. SUFFIXED (ex-NÉBULA) -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="app-card" id="suffixed">
+    <div class="card-header">
+      <div class="app-icon icon-purple">S</div>
+      <div class="card-title-group">
+        <div class="app-name">Suffixed <span style="font-size:12px;color:var(--text3);font-weight:400;">(ex Nébula)</span></div>
+        <div class="app-tagline">700+ canales · Cine · Series · Fútbol</div>
+        <div class="badge-row">
+          <span class="badge badge-purple">⚡ Activación inmediata</span>
+          <span class="badge badge-blue">700+ canales</span>
+          <span class="badge badge-orange">3 dispositivos</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feat"><span class="feat-icon">📺</span> +700 canales en vivo</div>
+      <div class="feat"><span class="feat-icon">⚽</span> Pack fútbol completo</div>
+      <div class="feat"><span class="feat-icon">🎬</span> Películas actualizadas</div>
+      <div class="feat"><span class="feat-icon">🌎</span> Canales nacionales e int.</div>
+      <div class="feat"><span class="feat-icon">⭐</span> Canales premium</div>
+      <div class="feat"><span class="feat-icon">🔞</span> Canales para adultos</div>
+      <div class="feat"><span class="feat-icon">🌏</span> Pack Oriental</div>
+      <div class="feat"><span class="feat-icon">📱</span> Hasta 3 dispositivos</div>
+    </div>
+
+    <div class="compat-row">
+      <span class="compat-tag"><span class="compat-dot"></span> Celular Android</span>
+      <span class="compat-tag"><span class="compat-dot"></span> Smart TV Android</span>
+      <span class="compat-tag"><span class="compat-dot"></span> Google TV</span>
+      <span class="compat-tag"><span class="compat-dot"></span> TV Box</span>
+      <span class="compat-tag"><span class="compat-dot"></span> Tablet Android</span>
+    </div>
+
+    <hr class="card-divider">
+
+    <div class="download-section">
+      <div class="dl-section-title">📥 Descarga directa</div>
+      <div class="dl-blocks">
+        <div class="dl-block">
+          <div class="dl-block-title">📱 TV / Celular / Tablet / TV Box</div>
+          <div class="dl-row">
+            <span class="dl-label">Código Downloader</span>
+            <span class="dl-code">1557677</span>
+          </div>
+          <div class="dl-row">
+            <span class="dl-label">Link directo</span>
+            <a class="dl-link" href="https://go.aftvnews.com/1557677" target="_blank">go.aftvnews.com/1557677</a>
+          </div>
+          <a class="btn-download" href="https://go.aftvnews.com/1557677" target="_blank">📥 Descargar Suffixed</a>
+        </div>
+      </div>
+      <div class="pin-row">🔞 <strong>PIN adultos: 4865</strong> · Mantenlo privado</div>
+      <div class="demo-pill">💥 Pedís hoy, lo usás hoy · Activación inmediata</div>
+    </div>
+
+    <div class="version-bar">
+      <span>Antes conocida como Nébula</span>
+      <span>TV Digital Premium</span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 4. CAELUM + TECO PLAY + VANTUM -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="app-card" id="caelum">
+    <div class="card-header">
+      <div class="app-icon icon-teal">C</div>
+      <div class="card-title-group">
+        <div class="app-name">Caelum · Teco Play · Vantum</div>
+        <div class="app-tagline">Apps populares nacionales y multidispositivo</div>
+        <div class="badge-row">
+          <span class="badge badge-green">🇦🇷 Nacional</span>
+          <span class="badge badge-blue">Económica</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="card-divider">
+
+    <div class="download-section">
+      <div class="dl-section-title">📥 Opciones de descarga</div>
+      <div class="dl-blocks">
+
+        <!-- CAELUM TV -->
+        <div class="dl-block">
+          <div class="dl-block-title">📺 TV Digital Caelum</div>
+
+          <div style="font-size:12px;color:var(--text3);margin-bottom:10px;font-weight:600;">Android TV / Smart TV</div>
+          <div class="dl-row">
+            <span class="dl-label">Código Downloader</span>
+            <span class="dl-code">3206243</span>
+          </div>
+          <div class="dl-row">
+            <span class="dl-label">Link directo</span>
+            <a class="dl-link" href="http://aftv.news/3206243" target="_blank">aftv.news/3206243</a>
+          </div>
+
+          <div style="font-size:12px;color:var(--text3);margin:12px 0 10px;font-weight:600;">Celular / TV Box / Chrome</div>
+          <div class="dl-row">
+            <span class="dl-label">Código Downloader</span>
+            <span class="dl-code">9240914</span>
+          </div>
+          <div class="dl-row">
+            <span class="dl-label">Link directo</span>
+            <a class="dl-link" href="http://aftv.news/9240914" target="_blank">aftv.news/9240914</a>
+          </div>
+
+          <div style="background:var(--bg4);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-top:10px;font-size:12px;color:var(--text2);line-height:1.7;">
+            <strong style="color:var(--text);display:block;margin-bottom:6px;">Si tu TV es Android:</strong>
+            1. Descargá <em>Downloader</em> desde Play Store<br>
+            2. En URL / CODE ingresá <strong style="color:var(--orange);">9240914</strong> → LOAD<br>
+            3. Aceptá todos los permisos de orígenes desconocidos
+          </div>
+          <a class="btn-download" href="http://aftv.news/9240914" target="_blank">📥 Descargar Caelum</a>
+        </div>
+
+        <!-- TECO PLAY -->
+        <div class="dl-block">
+          <div class="dl-block-title">📱 Teco Play · Popular y económica 🇦🇷</div>
+          <div class="dl-row">
+            <span class="dl-label">Código Downloader</span>
+            <span class="dl-code">3627974</span>
+          </div>
+          <div class="dl-row">
+            <span class="dl-label">Celular / TV Box</span>
+            <a class="dl-link" href="http://aftv.news/3627974" target="_blank">aftv.news/3627974</a>
+          </div>
+          <a class="btn-download" href="http://aftv.news/3627974" target="_blank">📥 Descargar Teco Play</a>
+        </div>
+
+        <!-- VANTUM -->
+        <div class="dl-block">
+          <div class="dl-block-title">📦 Vantum 1</div>
+          <div class="dl-row">
+            <span class="dl-label">TV Box / Celular Android</span>
+            <a class="dl-link" href="http://go.aftvnews.com/6840076" target="_blank">go.aftvnews.com/6840076</a>
+          </div>
+          <a class="btn-download" href="http://go.aftvnews.com/6840076" target="_blank">📥 Descargar Vantum 1</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="version-bar">
+      <span>Caelum · Teco Play · Vantum 1</span>
+      <span>Compatibles con Android</span>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  © 2026 Centro de Apps · Todos los derechos reservados<br>
+  <span style="margin-top:4px;display:block;">Consultanos para accesos y pruebas gratuitas</span>
+</footer>
+
+<script>
+  const links = document.querySelectorAll('nav a');
+  const sections = document.querySelectorAll('.app-card[id]');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
