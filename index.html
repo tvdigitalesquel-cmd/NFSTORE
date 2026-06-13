@@ -1,893 +1,961 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NF Store | Entretenimiento Premium</title>
-  <meta name="description" content="Descargá tus apps de TV Digital y Streaming en segundos. Pedí tu usuario de prueba gratis por WhatsApp." />
-
-  <!-- Preload de la imagen principal para optimizar carga -->
-  <link rel="preload" as="image" href="https://wallpaperswide.com/download/2026_fifa_world_cup_2-wallpaper-7680x2160.jpg" fetchpriority="high">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zyron Stream | Centro de Apps</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:      #07070f;
-      --surf:    #0d0d1c;
-      --surf2:   #131324;
-      --border:  rgba(255,220,100,.06);
-      --border2: rgba(255,220,100,.15);
-      --text:    #f5f0e8;
-      --muted:   #a09fbb;
-      --gold:    #f5a623;
-      --gold2:   #c8861a;
-      --teal:    #20d4b8;
-      --blue:    #3a7fdb;
-      --blue-light: #60a5fa;
-      --green:   #22c55e;
-      --red:     #f87171;
-      --orange:  #f97316;
-      --purple:  #a78bfa;
-      --nav-h:   68px;
-      --pad:     18px;
-      --radius:  16px;
+      --bg: #04050d;
+      --surface: rgba(255,255,255,.055);
+      --border: rgba(255,255,255,.10);
+      --text: #eef0ff;
+      --muted: #7b82a8;
+      --cyan: #00e5ff;
+      --gold: #ffd060;
+      --violet: #a259ff;
+      --green: #00e89b;
+      --red: #ff4f6e;
+      --orange: #ff8c42;
+      --radius: 22px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: "Figtree", system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
       overflow-x: hidden;
-      min-height: 100svh;
     }
 
-    /* Efecto de grano de fondo premium */
     body::before {
       content: "";
-      position: fixed; inset: 0; pointer-events: none; z-index: 900;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence baseFrequency='.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23f)' opacity='.028'/%3E%3C/svg%3E");
-      opacity: .6;
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: .5;
     }
 
-    /* Brillos ambientales de fondo */
-    body::after {
-      content: "";
-      position: fixed; inset: 0; pointer-events: none; z-index: 0;
-      background:
-        radial-gradient(ellipse 60% 40% at 20% 10%, rgba(245,166,35,.06), transparent 60%),
-        radial-gradient(ellipse 50% 35% at 80% 80%, rgba(58,127,219,.05), transparent 60%);
+    .glow-top {
+      position: fixed;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 500px;
+      background: radial-gradient(ellipse, rgba(0,229,255,.12) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
     }
 
-    img { display: block; }
-    a { text-decoration: none; }
-
-    /* ── NAV ── */
-    .nav {
-      position: sticky; top: 0; z-index: 100;
-      height: var(--nav-h);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 var(--pad);
-      background: rgba(7,7,15,.88);
-      backdrop-filter: blur(24px) saturate(180%);
-      border-bottom: 1px solid var(--border2);
-    }
-
-    .nav::before {
-      content: "";
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--blue) 70%, transparent 100%);
-    }
-
-    .logo-container {
+    nav {
+      position: relative;
+      z-index: 10;
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
+      padding: 18px 32px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(4,5,13,.85);
+      backdrop-filter: blur(20px);
     }
 
-    .logoImg {
-      height: 46px; width: auto; object-fit: contain;
-      border-radius: 10px;
-      filter: drop-shadow(0 2px 12px rgba(245,166,35,.4));
-    }
-
-    .brand-text {
+    .nav-brand {
       display: flex;
-      flex-direction: column;
-      line-height: 1.1;
+      align-items: center;
+      gap: 14px;
     }
 
-    .brand-name {
-      font-family: "Clash Display", sans-serif;
-      font-size: 16px; font-weight: 700;
-      letter-spacing: 0.05em;
-      background: linear-gradient(90deg, var(--gold) 0%, #fff 55%, var(--gold) 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-
-    .brand-sub {
-      font-size: 9px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase;
-    }
-
-    .nav-pills { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
-    .nav-pills::-webkit-scrollbar { display: none; }
-
-    .nav-pill {
-      color: var(--muted);
-      font-size: 11px; font-weight: 600;
-      letter-spacing: .08em; text-transform: uppercase;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.05);
-      background: rgba(255,255,255,.03);
-      transition: all .2s;
-      white-space: nowrap;
-    }
-
-    .nav-pill.active, .nav-pill:hover {
-      color: var(--gold);
-      background: rgba(245,166,35,.08);
-      border-color: rgba(245,166,35,.25);
-    }
-
-    /* ── HERO BANNER ── */
-    .screen {
-      position: relative;
-      width: 100%; height: 48svh; min-height: 260px;
+    .nav-logo {
+      width: 46px; height: 46px;
+      border-radius: 14px;
       overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(0,229,255,.3);
+      box-shadow: 0 0 20px rgba(0,229,255,.2);
+      background: #0b0d1a;
+      flex: 0 0 auto;
+    }
+    .nav-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .nav-brand-text h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+      line-height: 1;
+      color: #fff;
+    }
+    .nav-brand-text p {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 3px;
     }
 
-    .screen-img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center 30%;
-      filter: brightness(0.5) saturate(1.1);
+    .nav-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,229,255,.25);
+      background: rgba(0,229,255,.07);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--cyan);
+      letter-spacing: .5px;
     }
-
-    .screen::after {
+    .nav-badge::before {
       content: "";
-      position: absolute; inset: 0;
-      background: linear-gradient(180deg,
-        rgba(7,7,15,.40)  0%,
-        rgba(7,7,15,.10) 40%,
-        rgba(7,7,15,.70) 75%,
-        var(--bg) 100%
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50% { opacity: .4; }
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-height: 340px;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      width: 100%;
+      max-height: 340px;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+      filter: brightness(.75) saturate(1.1);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 20%,
+        rgba(4,5,13,.3) 60%,
+        rgba(4,5,13,.95) 100%
       );
     }
 
-    .hero-center {
+    .hero-content {
       position: absolute;
-      z-index: 5;
+      bottom: 40px;
+      left: 0; right: 0;
       text-align: center;
-      display: flex; flex-direction: column; align-items: center;
+      padding: 0 24px;
     }
 
-    .hero-big-logo {
-      width: 90px; height: 90px; object-fit: contain;
-      border-radius: 20px; margin-bottom: 12px;
-      filter: drop-shadow(0 0 25px rgba(245,166,35,0.5));
-      animation: float 4s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-
-    .screen-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 6px 14px;
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
       border-radius: 999px;
-      background: rgba(7,7,15,.75);
-      border: 1px solid rgba(245,166,35,.3);
-      backdrop-filter: blur(12px);
-      font-family: "Clash Display", sans-serif;
-      font-size: 11px; font-weight: 600;
-      letter-spacing: .08em; text-transform: uppercase;
-      color: var(--gold);
+      background: rgba(0,229,255,.1);
+      border: 1px solid rgba(0,229,255,.25);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--cyan);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
     }
 
-    .live-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--gold);
-      animation: pulse 2s ease-in-out infinite;
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 9vw, 110px);
+      line-height: .9;
+      letter-spacing: 3px;
+      color: #fff;
+      text-shadow: 0 4px 40px rgba(0,0,0,.5);
+    }
+    .hero-title span {
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    @keyframes pulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(245,166,35,.5); opacity: 1; }
-      55%      { box-shadow: 0 0 0 6px rgba(245,166,35,0); opacity: 0.4; }
+    .hero-sub {
+      margin-top: 14px;
+      font-size: 16px;
+      color: rgba(255,255,255,.7);
+      font-weight: 300;
+      letter-spacing: .3px;
     }
 
-    /* ── MAIN ── */
     .main {
-      position: relative; z-index: 1;
-      padding: 10px var(--pad) 120px;
-      display: flex; flex-direction: column; gap: 32px;
-      max-width: 865px; margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
     }
 
-    /* ── HEADLINE ── */
-    .headline { text-align: center; display: flex; flex-direction: column; gap: 10px; margin-bottom: -10px; }
-
-    .headline h1 {
-      font-family: "Clash Display", sans-serif;
-      font-size: clamp(2.2rem, 9vw, 3.8rem);
-      font-weight: 700;
-      line-height: .95; letter-spacing: -.02em;
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 44px 0 28px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
     }
 
-    .headline h1 span {
-      background: linear-gradient(95deg, var(--gold) 0%, #fff 60%, var(--gold) 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .section-title strong {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      letter-spacing: 2px;
+      color: var(--text);
+      margin-top: 4px;
     }
 
-    .headline p { font-size: .95rem; line-height: 1.6; color: var(--muted); max-width: 45ch; margin: 0 auto; }
-    .headline p strong { color: var(--text); font-weight: 600; }
-
-    .banner-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 5px; }
-    .banner-pill {
-      font-size: 12px; color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1); padding: 5px 14px; border-radius: 999px;
+    .section-tag {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: .5px;
     }
 
-    /* ── DIVIDER ── */
-    .divider { display: flex; align-items: center; gap: 10px; scroll-margin-top: 80px; }
-    .divider span {
-      font-family: "Clash Display", sans-serif;
-      font-size: 11px; font-weight: 700;
-      letter-spacing: .14em; text-transform: uppercase;
-      color: var(--gold); white-space: nowrap;
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
     }
-    .divider::before, .divider::after {
-      content: ""; flex: 1; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(245,166,35,.2), transparent);
-    }
-
-    /* ── APP CARDS CON ESTILO PREMIUM ── */
-    .apps { display: flex; flex-direction: column; gap: 20px; }
 
     .app-card {
-      background: var(--surf);
-      border: 1px solid rgba(255,255,255,.05);
-      border-radius: 22px;
-      overflow: hidden;
       position: relative;
-      transition: border-color .25s ease, box-shadow .25s ease;
-      scroll-margin-top: 80px;
-    }
-    
-    .app-card:hover {
-      border-color: rgba(245,166,35, 0.3);
-      box-shadow: 0 12px 40px rgba(245,166,35,.05), 0 2px 12px rgba(0,0,0,.4);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: linear-gradient(160deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,.03) 100%);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow: hidden;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+      cursor: default;
+      animation: fadeUp .5s ease both;
     }
 
-    /* Shimmer Effect */
-    .app-card::after {
-      content: ""; position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.05) 50%, transparent 65%);
-      transform: translateX(-120%); transition: transform .7s ease;
-    }
-    .app-card:hover::after { transform: translateX(120%); }
+    .app-card:nth-child(1) { animation-delay: .05s; }
+    .app-card:nth-child(2) { animation-delay: .1s; }
+    .app-card:nth-child(3) { animation-delay: .15s; }
+    .app-card:nth-child(4) { animation-delay: .2s; }
+    .app-card:nth-child(5) { animation-delay: .25s; }
+    .app-card:nth-child(6) { animation-delay: .3s; }
+    .app-card:nth-child(7) { animation-delay: .35s; }
+    .app-card:nth-child(8) { animation-delay: .4s; }
+    .app-card:nth-child(9) { animation-delay: .45s; }
 
-    /* Top Line Accent */
+    .wa-bar {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 32px;
+      background: linear-gradient(90deg, rgba(0,229,255,.07), rgba(162,89,255,.07));
+      border-bottom: 1px solid rgba(0,229,255,.15);
+      flex-wrap: wrap;
+    }
+    .wa-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: rgba(255,255,255,.85);
+      font-weight: 400;
+    }
+    .wa-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      box-shadow: 0 4px 16px rgba(37,211,102,.3);
+    }
+    .wa-icon svg { width: 20px; height: 20px; fill: #fff; }
+    .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: filter .2s, transform .15s;
+      box-shadow: 0 6px 20px rgba(37,211,102,.25);
+    }
+    .wa-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
+    .wa-btn svg { width: 15px; height: 15px; fill: #fff; flex: 0 0 auto; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     .app-card::before {
-      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; opacity: .8;
-    }
-    .app-card.color-orange::before { background: linear-gradient(90deg, #f97316, #ea580c); }
-    .app-card.color-blue::before { background: linear-gradient(90deg, #3b82f6, #1d4ed8); }
-    .app-card.color-purple::before { background: linear-gradient(90deg, #8b5cf6, #6d28d9); }
-    .app-card.color-teal::before { background: linear-gradient(90deg, #14b8a6, #0f766e); }
-
-    .card-header {
-      padding: 24px 20px 16px;
-      display: flex; align-items: flex-start; gap: 16px;
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 0%, var(--card-glow), transparent 55%);
+      opacity: .6;
+      pointer-events: none;
+      transition: opacity .25s;
     }
 
-    .app-ico-box {
-      width: 60px; height: 60px; flex-shrink: 0;
-      border-radius: 16px; display: flex; align-items: center; justify-content: center;
-      font-family: "Clash Display", sans-serif; font-size: 24px; font-weight: 700;
-      box-shadow: 0 4px 14px rgba(0,0,0,.3);
+    .app-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,255,255,.2);
+      box-shadow: 0 30px 60px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.08);
     }
-    .ico-orange { background: linear-gradient(135deg, #f97316, #ea580c); color: #fff; }
-    .ico-blue   { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; }
-    .ico-purple { background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: #fff; }
-    .ico-teal   { background: linear-gradient(135deg, #14b8a6, #0f766e); color: #fff; }
+    .app-card:hover::before { opacity: 1; }
 
-    .card-title-wrap { flex: 1; min-width: 0; }
-    
+    .app-card::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 24px; right: 24px;
+      height: 2px;
+      background: var(--card-accent);
+      border-radius: 0 0 4px 4px;
+      opacity: .8;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .app-logo {
+      width: 72px; height: 72px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.05);
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      font-size: 30px;
+    }
+    .app-logo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .app-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      line-height: 1;
+      color: rgba(255,255,255,.06);
+      letter-spacing: 2px;
+      margin-top: -4px;
+    }
+
     .app-name {
-      font-family: "Clash Display", sans-serif;
-      font-size: 20px; font-weight: 600; line-height: 1.2; color: #fff;
-    }
-    .app-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
-
-    .badge-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    .badge {
-      font-size: 10px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase;
-      padding: 3px 10px; border-radius: 999px; border: 1px solid transparent;
-    }
-    .badge-orange { background: rgba(249,115,22,0.1); color: var(--orange); border-color: rgba(249,115,22,0.2); }
-    .badge-green  { background: rgba(34,197,94,0.1); color: var(--green); border-color: rgba(34,197,94,0.15); }
-    .badge-blue   { background: rgba(96,165,250,0.1); color: var(--blue-light); border-color: rgba(96,165,250,0.15); }
-    .badge-purple { background: rgba(167,139,250,0.1); color: var(--purple); border-color: rgba(167,139,250,0.15); }
-    .badge-red    { background: rgba(248,113,113,0.1); color: var(--red); border-color: rgba(248,113,113,0.15); }
-    .badge-gold   { background: rgba(245,166,35,0.1); color: var(--gold); border-color: rgba(245,166,35,0.2); }
-
-    /* Características Grid */
-    .features-grid {
-      padding: 0 20px 16px;
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px;
-    }
-    .feat {
-      background: var(--surf2); border: 1px solid rgba(255,255,255,.03); border-radius: 10px;
-      padding: 10px 12px; font-size: 13px; display: flex; align-items: center; gap: 8px; color: #d0cbe3;
-    }
-    .feat-icon { font-size: 15px; flex-shrink: 0; }
-
-    .card-divider { margin: 0 20px; border: none; border-top: 1px solid rgba(255,255,255,.05); }
-
-    /* Zona Descargas Interna */
-    .download-section { padding: 16px 20px 20px; }
-    .dl-section-title {
-      font-size: 11px; font-weight: 700; letter-spacing: .08em;
-      text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 12px;
-    }
-    .dl-blocks { display: flex; flex-direction: column; gap: 10px; }
-    .dl-block { background: var(--surf2); border: 1px solid rgba(255,255,255,.03); border-radius: 12px; padding: 14px; }
-    .dl-block-title {
-      font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 8px;
-      display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.02em;
-    }
-    .dl-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
-    .dl-label { font-size: 12px; color: rgba(255,255,255,.3); }
-    .dl-code {
-      font-family: monospace; font-size: 15px; font-weight: 700; color: var(--gold);
-      background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.15);
-      padding: 3px 10px; border-radius: 6px;
-    }
-    .dl-link { font-size: 12px; color: var(--blue-light); word-break: break-all; }
-    .dl-link:hover { text-decoration: underline; }
-
-    .btn-dl-apk {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
-      padding: 12px; margin-top: 10px; border-radius: 12px; border: none;
-      font-family: "Clash Display", sans-serif; font-size: 13px; font-weight: 700;
-      letter-spacing: .06em; text-transform: uppercase; color: #07070f;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
-      box-shadow: 0 4px 16px rgba(245,166,35,0.25);
-      transition: all .2s; cursor: pointer;
-    }
-    .btn-dl-apk:active { transform: scale(.98); }
-    .btn-dl-apk svg { width: 14px; height: 14px; stroke: currentColor; }
-
-    .btn-coming {
-      display: block; width: 100%; background: rgba(255,255,255,.03); color: rgba(255,255,255,.2);
-      font-size: 12px; font-weight: 600; padding: 12px; border-radius: 12px;
-      text-align: center; margin-top: 10px; border: 1px solid rgba(255,255,255,.05);
-      letter-spacing: .05em; text-transform: uppercase;
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+      line-height: 1;
+      color: #fff;
     }
 
-    .pin-row {
-      display: flex; align-items: center; gap: 8px; margin-top: 8px;
-      padding: 8px 12px; background: rgba(248,113,113,0.05);
-      border: 1px solid rgba(248,113,113,0.1); border-radius: 8px;
-      font-size: 12px; color: var(--red);
-    }
-    .demo-pill {
-      display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--green); font-weight: 600;
-      background: rgba(34,197,94,0.05); border: 1px solid rgba(34,197,94,0.15);
-      border-radius: 999px; padding: 3px 12px; margin-top: 8px;
+    .app-cat {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
     }
 
-    .compat-row { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 20px 14px; }
-    .compat-tag {
-      font-size: 11px; color: var(--muted); background: var(--surf2); border: 1px solid rgba(255,255,255,.03);
-      padding: 4px 10px; border-radius: 6px; display: flex; align-items: center; gap: 5px;
-    }
-    .compat-dot { width: 5px; height: 5px; background: var(--green); border-radius: 50%; }
-
-    .version-bar {
-      padding: 8px 20px; background: rgba(255,255,255,.02); border-top: 1px solid rgba(255,255,255,.04);
-      font-size: 11px; color: rgba(255,255,255,.25); display: flex; justify-content: space-between;
+    .app-desc {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: rgba(200,205,230,.72);
+      flex: 1;
     }
 
-    /* ── STATS ── */
-    .stats {
-      display: grid; grid-template-columns: repeat(3,1fr);
-      border-radius: var(--radius); overflow: hidden;
-      border: 1px solid var(--border2); background: var(--surf);
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
     }
-    .stat { padding: 18px 12px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
-    .stat + .stat { border-left: 1px solid var(--border); }
-    .stat-val {
-      font-family: "Clash Display", sans-serif; font-size: 2rem; line-height: 1; font-weight: 700;
-      background: linear-gradient(135deg, var(--gold) 0%, #fff 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .stat-lbl { font-size: 10px; font-weight: 500; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
-
-    /* ── SMART TV TUTORIAL ── */
-    .how { display: flex; flex-direction: column; gap: 10px; }
-    .how-title {
-      font-family: "Clash Display", sans-serif; font-size: 2.2rem; font-weight: 700; letter-spacing: -.01em;
-      line-height: 1; margin-bottom: 4px;
-      background: linear-gradient(90deg, var(--text) 40%, var(--muted) 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .step {
-      display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: var(--radius);
-      background: var(--surf); border: 1px solid var(--border); transition: border-color .2s;
-    }
-    .step:hover { border-color: rgba(245,166,35,.2); }
-    .step-n {
-      width: 36px; height: 36px; flex-shrink: 0; border-radius: 12px;
-      background: linear-gradient(135deg, var(--gold), #ff8c3a);
-      display: grid; place-items: center; font-family: "Clash Display", sans-serif;
-      font-size: 1.2rem; font-weight: 700; color: #0a0a0f; box-shadow: 0 4px 14px rgba(245,166,35,.25);
-    }
-    .step-body h3 { font-family: "Clash Display", sans-serif; font-size: .98rem; font-weight: 600; margin-bottom: 3px; }
-    .step-body p  { font-size: .85rem; color: var(--muted); line-height: 1.55; }
-
-    .tv-tutorial {
-      margin-top: 14px; border-radius: var(--radius); border: 1px solid rgba(96,165,250,.2);
-      background: rgba(96,165,250,.03); padding: 18px 16px; display: flex; flex-direction: column; gap: 14px;
-    }
-    .tv-tutorial-header {
-      display: flex; align-items: center; gap: 9px; font-family: "Clash Display", sans-serif;
-      font-size: 12px; font-weight: 700; letter-spacing: .10em; text-transform: uppercase; color: var(--blue-light);
-      padding-bottom: 12px; border-bottom: 1px solid rgba(96,165,250,.1);
-    }
-    .tv-tutorial-header svg { width: 18px; height: 18px; flex-shrink: 0; }
-    .tv-step { display: flex; align-items: flex-start; gap: 12px; }
-    .tv-step-ico {
-      flex-shrink: 0; width: 32px; height: 32px; border-radius: 10px;
-      background: rgba(96,165,250,.10); border: 1px solid rgba(96,165,250,.2);
-      color: var(--blue-light); display: grid; place-items: center;
-    }
-    .tv-step-ico svg { width: 16px; height: 16px; }
-    .tv-step-body { font-size: .88rem; line-height: 1.6; color: var(--muted); padding-top: 4px; }
-    .tv-step-body strong { color: var(--text); }
-    
-    .tv-downloader-wrap { display: inline-flex; align-items: center; gap: 5px; vertical-align: middle; }
-    .tv-downloader-ico { width: 20px; height: 20px; border-radius: 5px; display: inline-block; vertical-align: middle; }
-    .tv-code {
-      display: inline-block; padding: 1px 8px; border-radius: 6px;
-      background: rgba(245,166,35,.1); border: 1px solid rgba(245,166,35,.25);
-      color: var(--gold) !important; font-family: monospace; font-size: 0.95rem;
+    .tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.07);
+      color: rgba(255,255,255,.7);
     }
 
-    /* ── CTA ── */
-    .cta {
-      border-radius: 20px; padding: 24px 20px;
-      background:
-        radial-gradient(280px 140px at 0% 0%, rgba(245,166,35,.08), transparent 65%),
-        radial-gradient(280px 140px at 100% 100%, rgba(58,127,219,.05), transparent 65%),
-        var(--surf2);
-      border: 1px solid var(--border2); display: flex; flex-direction: column; gap: 16px;
+    /* Downloader code box */
+    .downloader-code {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: .5px;
     }
-    .cta h3 {
-      font-family: "Clash Display", sans-serif; font-size: 2rem; font-weight: 700; letter-spacing: -.01em; line-height: .95;
-      background: linear-gradient(90deg, var(--gold) 0%, var(--text) 80%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
+    .downloader-code span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 2px;
+      color: var(--cyan);
     }
-    .cta p  { font-size: .88rem; color: var(--muted); line-height: 1.6; }
+    .downloader-code em {
+      font-style: normal;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
 
-    .btn-wa {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      padding: 16px 26px; border-radius: 16px;
-      background: linear-gradient(135deg, #25d366 0%, #1aad54 100%); color: #fff;
-      font-family: "Clash Display", sans-serif; font-size: 15px; font-weight: 700;
-      letter-spacing: .06em; text-transform: uppercase; border: none;
-      box-shadow: 0 5px 0 #0f7a38, 0 10px 25px rgba(37,211,102,.3);
-      transition: transform .15s, box-shadow .15s; position: relative; overflow: hidden;
+    .download-btn {
+      width: 100%;
+      border: none;
       cursor: pointer;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--card-accent);
+      color: #000;
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: filter .2s ease, transform .15s ease, box-shadow .2s ease;
+      box-shadow: 0 10px 28px var(--card-shadow);
+      margin-top: auto;
+      text-decoration: none;
     }
-    .btn-wa::before {
-      content: ""; position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,.15) 0%, transparent 60%);
+    .download-btn:hover {
+      filter: brightness(1.12);
+      transform: scale(1.02);
+      box-shadow: 0 14px 36px var(--card-shadow);
     }
-    .btn-wa:hover { transform: translateY(-2px); box-shadow: 0 7px 0 #0f7a38, 0 14px 30px rgba(37,211,102,.35); }
-    .btn-wa:active { transform: translateY(2px); box-shadow: 0 2px 0 #0f7a38, 0 4px 12px rgba(37,211,102,.2); }
-    .btn-wa svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .download-btn:active { transform: scale(.98); }
 
-    /* ── FLOATING FAB ── */
-    .fabs { position: fixed; right: 16px; bottom: 20px; z-index: 200; }
-    .fab {
-      display: flex; align-items: center; gap: 8px; padding: 10px 16px 10px 10px; border-radius: 999px;
-      font-family: "Clash Display", sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase;
-      background: #25d366; color: #fff; box-shadow: 0 4px 0 #128c4a, 0 8px 24px rgba(37,211,102,.35);
-      transition: transform .2s, box-shadow .2s; position: relative; overflow: hidden;
-    }
-    .fab::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,.15) 0%, transparent 55%); }
-    .fab:hover { transform: translateY(-2px); box-shadow: 0 5px 0 #128c4a, 0 12px 28px rgba(37,211,102,.4); }
-    .fab-icon { width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,.2); display: grid; place-items: center; }
-    .fab-icon svg { width: 15px; height: 15px; }
-
-    /* ── REVEAL SCROLL ── */
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
-    .reveal.vis { opacity: 1; transform: none; }
-
-    /* ── DESKTOP GRID OPTIMIZATION ── */
-    @media (min-width: 720px) {
-      :root { --nav-h: 80px; --pad: 32px; }
-      .logoImg { height: 52px; }
-      .screen { height: 55vh; }
-      .hero-big-logo { width: 110px; height: 110px; }
-      .main { padding: 32px var(--pad) 80px; gap: 40px; }
-      .apps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-      .catalog-link { grid-column: 1/-1; max-width: 340px; margin: 0 auto; }
-      .cta { flex-direction: row; align-items: center; justify-content: space-between; }
-      .cta .btn-wa { min-width: 210px; flex-shrink: 0; }
+    .download-btn svg {
+      width: 16px; height: 16px;
+      flex: 0 0 auto;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; }
-      .reveal { opacity: 1 !important; transform: none !important; }
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 24px;
+      color: var(--muted);
+      font-size: 12px;
+      border-top: 1px solid var(--border);
+      letter-spacing: .5px;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0,0,0,.75);
+      backdrop-filter: blur(14px);
+    }
+    .modal.show { display: flex; }
+
+    .modal-box {
+      width: min(420px,100%);
+      border-radius: 28px;
+      padding: 36px 30px;
+      border: 1px solid var(--border);
+      background: linear-gradient(160deg, #0e1022, #06070f);
+      box-shadow: 0 40px 100px rgba(0,0,0,.6);
+      text-align: center;
+      animation: modalIn .3s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes modalIn {
+      from { opacity:0; transform:scale(.88); }
+      to   { opacity:1; transform:scale(1); }
+    }
+
+    .modal-logo {
+      width: 80px; height: 80px;
+      border-radius: 22px;
+      margin: 0 auto 18px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #00e5ff, #a259ff);
+      font-size: 32px;
+      box-shadow: 0 10px 30px rgba(0,229,255,.25);
+    }
+    .modal-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 22px; }
+
+    .modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+    .modal-sub {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .bar-track {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .bar-fill {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      border-radius: 999px;
+      transition: width .3s ease;
+    }
+
+    .modal-pct {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 44px;
+      letter-spacing: 2px;
+      margin-bottom: 22px;
+    }
+
+    .modal-close {
+      display: none;
+      border: none;
+      background: #fff;
+      color: #060710;
+      padding: 13px 28px;
+      border-radius: 14px;
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: filter .2s;
+    }
+    .modal-close:hover { filter: brightness(.9); }
+
+    @media (max-width:900px) {
+      .apps-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width:580px) {
+      nav { padding: 14px 18px; }
+      .apps-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 52px; }
+      .wa-bar { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVEGACIÓN -->
-  <nav class="nav">
-    <div class="logo-container">
-      <img class="logoImg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAMAAABiy66kAAAASFBMVEUAAAD///8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM3907bAAAAF3RSTlMA9wYGGAsUChf6FwQCBe7v99S3mYwX0qgOa/sAAAFvSURBVFjH7dbXcoMwEAVQgy0w7pTe/f9XbAm2ZInMhGTIvOfw8mAs6Y60isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUf6+X7609KstY6Fw63ZFnX1h8R6G9Lsh68U48IdGvW3bL+60AsG6z7bSGWf8vP3VbEsrfslZ0R6NZL9saPCPT5TofshFvT/nC4gGZDuq/shL/9w90t6b+yM/bHw2U0M9J9Zifcn9b8Kzvj+wG0K9J9Y80v0+4W9E/WhWfNz+Dq87Sg/8qaX9T866N/sh68L9wG0OuyFr8N9NoR6XUjEt06Er06EonunXb0Oun+yN6+FmK9b0Sg7869XisSgdaR6M6RSHRnx7ZOf9uS/AatW8v2v6b5B1X9RjQ=" alt="NF Store" />
-      <div class="brand-text">
-        <span class="brand-name">NF Store</span>
-        <span class="brand-sub">Entretenimiento Premium</span>
-      </div>
-    </div>
-    <div class="nav-pills" role="navigation" aria-label="Navegación">
-      <a class="nav-pill active" href="#dispositivos">Catálogo</a>
-      <a class="nav-pill" href="#tutorial">Cómo Instalar</a>
-    </div>
-  </nav>
+<div class="glow-top"></div>
 
-  <!-- HERO BANNER -->
-  <div class="screen">
-    <img class="screen-img" src="https://wallpaperswide.com/download/2026_fifa_world_cup_2-wallpaper-7680x2160.jpg" alt="Fútbol y Entretenimiento" fetchpriority="high" loading="eager" />
-    <div class="hero-center">
-      <img class="hero-big-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAMAAABiy66kAAAASFBMVEUAAAD///8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM3907bAAAAF3RSTlMA9wYGGAsUChf6FwQCBe7v99S3mYwX0qgOa/sAAAFvSURBVFjH7dbXcoMwEAVQgy0w7pTe/f9XbAm2ZInMhGTIvOfw8mAs6Y60isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUfKxN9C4G0isUf6+X7609KstY6Fw63ZFnX1h8R6G9Lsh68U48IdGvW3bL+60AsG6z7bSGWf8vP3VbEsrfslZ0R6NZL9saPCPT5TofshFvT/nC4gGZDuq/shL/9w90t6b+yM/bHw2U0M9J9Zifcn9b8Kzvj+wG0K9J9Y80v0+4W9E/WhWfNz+Dq87Sg/8qaX9T866N/sh68L9wG0OuyFr8N9NoR6XUjEt06Er06EonunXb0Oun+yN6+FmK9b0Sg7869XisSgdaR6M6RSHRnx7ZOf9uS/AatW8v2v6b5B1X9RjQ=" alt="NF Store" />
-      <div class="screen-badge">
-        <span class="live-dot"></span>
-        Servidores Online
-      </div>
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">
+      <img src="https://github.com/Lichaaos23/zyronstreamapps/blob/main/img/zayron4k.png?raw=true"
+           alt="Zyron" onerror="this.style.display='none'">
+    </div>
+    <div class="nav-brand-text">
+      <h1>ZYRON STREAM</h1>
+      <p>Las mejores apps de Streaming</p>
     </div>
   </div>
+  <div class="nav-badge">9 apps disponibles</div>
+</nav>
 
-  <!-- SECCIÓN PRINCIPAL -->
-  <div class="main">
+<!-- HERO IMAGE -->
+<section class="hero">
+  <img class="hero-img"
+       src="https://github.com/Lichaaos23/zyronstreamapps/blob/main/img/banner.png?raw=true"
+       alt="Zyron Stream Hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-sub">Instalá, disfrutá y contactanos para tu usuario de prueba gratis</p>
+  </div>
+</section>
 
-    <div class="headline reveal vis">
-      <h1>Elegí tu aplicación de <span>Streaming</span></h1>
-      <p>Instalá la versión ideal para tu dispositivo. Escribinos por WhatsApp para activar tu acceso de prueba <strong>completamente gratis</strong>.</p>
-      <div class="banner-pills">
-        <span class="banner-pill">⚡ Instalación Inmediata</span>
-        <span class="banner-pill">🍿 Calidad Ultra HD</span>
-        <span class="banner-pill">👾 Soporte 24/7</span>
-      </div>
+<!-- MAIN -->
+<main class="main">
+
+  <div class="section-header">
+    <div class="section-title">
+      Seleccioná tu app
+      <strong>APLICACIONES DISPONIBLES</strong>
     </div>
+    <span class="section-tag">Formato APK · Android</span>
+  </div>
 
-    <div class="stats reveal vis">
-      <div class="stat"><div class="stat-val">4</div><div class="stat-lbl">Apps Premium</div></div>
-      <div class="stat"><div class="stat-val">4K</div><div class="stat-lbl">Resolución</div></div>
-      <div class="stat"><div class="stat-val">100%</div><div class="stat-lbl">Estable</div></div>
-    </div>
+  <!-- APPS GRID -->
+  <div class="apps-grid">
 
-    <div class="divider reveal vis" id="dispositivos"><span>Catálogo de Aplicaciones</span></div>
-
-    <!-- CONTENEDOR DE TARJETAS DE APLICACIONES -->
-    <div class="apps">
-
-      <!-- APP 1: TV 1 (ORANGE) -->
-      <div class="app-card color-orange reveal vis">
-        <div class="card-header">
-          <div class="app-ico-box ico-orange">TV1</div>
-          <div class="card-title-wrap">
-            <h2 class="app-name">TV 1</h2>
-            <p class="app-sub">La más completa en deportes y canales en vivo</p>
-            <div class="badge-row">
-              <span class="badge badge-orange">Recomendado Fibra Óptica</span>
-              <span class="badge badge-green">Estable</span>
-            </div>
-          </div>
+    <!-- ZYRON 4K -->
+    <article class="app-card"
+      style="--card-glow:rgba(0,229,255,.18);--card-accent:linear-gradient(90deg,#00e5ff,#00b8d9);--card-shadow:rgba(0,229,255,.25)"
+      data-name="ZYRON 4K" data-icon="📺">
+      <div class="card-top">
+        <div class="app-logo">
+          <img src="https://github.com/Lichaaos23/zyronstreamapps/blob/main/img/zayron4k.png?raw=true"
+               alt="ZYRON 4K" onerror="this.parentElement.textContent='📺'">
         </div>
-        <div class="features-grid">
-          <div class="feat"><span class="feat-icon">⚽</span> Canales de Deportes</div>
-          <div class="feat"><span class="feat-icon">📺</span> Grilla En Vivo Latino</div>
-          <div class="feat"><span class="feat-icon">🚀</span> Optimizado Starlink</div>
-        </div>
-        <hr class="card-divider" />
-        <div class="download-section">
-          <p class="dl-section-title">Instalación</p>
-          <div class="dl-blocks">
-            <div class="dl-block">
-              <div class="dl-block-title">🔗 Descarga Directa (Celular / TV Box)</div>
-              <div class="dl-row">
-                <a href="https://gentle-shadow-a822.nfreenavegando.workers.dev/app.apk" class="btn-dl-apk">
-                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-                  Descargar APK
-                </a>
-              </div>
-            </div>
-            <div class="dl-block">
-              <div class="dl-block-title">📟 Código Smart TV (App Downloader)</div>
-              <div class="dl-row">
-                <span class="dl-label">Código:</span>
-                <span class="dl-code">2491339</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="compat-row">
-          <div class="compat-tag"><span class="compat-dot"></span> Android</div>
-          <div class="compat-tag"><span class="compat-dot"></span> Smart TV</div>
-          <div class="compat-tag"><span class="compat-dot"></span> TV Box</div>
-        </div>
-        <div class="version-bar">
-          <span>Versión: v4.2.0</span>
-          <span>Peso: ~65 MB</span>
-        </div>
+        <span class="app-num">01</span>
       </div>
-
-      <!-- APP 2: TV 2 (BLUE) -->
-      <div class="app-card color-blue reveal vis">
-        <div class="card-header">
-          <div class="app-ico-box ico-blue">TV2</div>
-          <div class="card-title-wrap">
-            <h2 class="app-name">TV 2</h2>
-            <p class="app-sub">Ideal para conexiones de baja velocidad</p>
-            <div class="badge-row">
-              <span class="badge badge-blue">Bajo Consumo (5MB)</span>
-              <span class="badge badge-green">Fluido</span>
-            </div>
-          </div>
-        </div>
-        <div class="features-grid">
-          <div class="feat"><span class="feat-icon">📉</span> Ultra Comprimido</div>
-          <div class="feat"><span class="feat-icon">⚡</span> Carga Rápida</div>
-          <div class="feat"><span class="feat-icon">📡</span> Datos Móviles 4G/5G</div>
-        </div>
-        <hr class="card-divider" />
-        <div class="download-section">
-          <p class="dl-section-title">Instalación</p>
-          <div class="dl-blocks">
-            <div class="dl-block">
-              <div class="dl-block-title">🔗 Descarga Directa (Celular / TV Box)</div>
-              <div class="dl-row">
-                <a href="https://github.com/mac-donal/apk/releases/download/tvplus2/tvplus2-2026.apk" class="btn-dl-apk">
-                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-                  Descargar APK
-                </a>
-              </div>
-            </div>
-            <div class="dl-block">
-              <div class="dl-block-title">📟 Código Smart TV (App Downloader)</div>
-              <div class="dl-row">
-                <span class="dl-label">Código:</span>
-                <span class="dl-code">852140</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="compat-row">
-          <div class="compat-tag"><span class="compat-dot"></span> Android</div>
-          <div class="compat-tag"><span class="compat-dot"></span> Firestick</div>
-          <div class="compat-tag"><span class="compat-dot"></span> Chromecast</div>
-        </div>
-        <div class="version-bar">
-          <span>Versión: v2026.1</span>
-          <span>Peso: ~38 MB</span>
-        </div>
-      </div>
-
-      <!-- APP 3: PELIS Y SERIES (PURPLE) -->
-      <div class="app-card color-purple reveal vis">
-        <div class="card-header">
-          <div class="app-ico-box ico-purple">🎬</div>
-          <div class="card-title-wrap">
-            <h2 class="app-name">Pelis y Series</h2>
-            <p class="app-sub">Cine, estrenos y series completas bajo demanda</p>
-            <div class="badge-row">
-              <span class="badge badge-purple">Conexión +20MB</span>
-              <span class="badge badge-gold">Calidad Cinema</span>
-            </div>
-          </div>
-        </div>
-        <div class="features-grid">
-          <div class="feat"><span class="feat-icon">🍿</span> Estrenos del Cine</div>
-          <div class="feat"><span class="feat-icon">🎭</span> Plataformas Incluidas</div>
-          <div class="feat"><span class="feat-icon">🔊</span> Audio Dual / Subtitulado</div>
-        </div>
-        <hr class="card-divider" />
-        <div class="download-section">
-          <p class="dl-section-title">Instalación</p>
-          <div class="dl-blocks">
-            <div class="dl-block">
-              <div class="dl-block-title">🔗 Descarga Directa (Celular / TV Box)</div>
-              <div class="dl-row">
-                <a href="https://tvpremiumapp.com/apks/NEXT-FLIX_25.apk" class="btn-dl-apk">
-                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-                  Descargar APK
-                </a>
-              </div>
-            </div>
-            <div class="dl-block">
-              <div class="dl-block-title">📟 Código Smart TV (App Downloader)</div>
-              <div class="dl-row">
-                <span class="dl-label">Código:</span>
-                <span class="dl-code">361094</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="compat-row">
-          <div class="compat-tag"><span class="compat-dot"></span> Android Celular</div>
-          <div class="compat-tag"><span class="compat-dot"></span> Android TV</div>
-        </div>
-        <div class="version-bar">
-          <span>Versión: v25.0</span>
-          <span>Peso: ~55 MB</span>
-        </div>
-      </div>
-
-      <!-- APP 4: APP IPHONE / WEB (TEAL) -->
-      <div class="app-card color-teal reveal vis">
-        <div class="card-header">
-          <div class="app-ico-box ico-teal">WEB</div>
-          <div class="card-title-wrap">
-            <h2 class="app-name">iOS / Computadora / Smart TV Antigua</h2>
-            <p class="app-sub">Reproductor oficial directo desde el navegador web</p>
-            <div class="badge-row">
-              <span class="badge badge-purple">Sin Instalación</span>
-              <span class="badge badge-blue">Multiplataforma</span>
-            </div>
-          </div>
-        </div>
-        <div class="features-grid">
-          <div class="feat"><span class="feat-icon">🍏</span> Compatible con iPhone</div>
-          <div class="feat"><span class="feat-icon">💻</span> PCs y Notebooks</div>
-          <div class="feat"><span class="feat-icon">🌐</span> Navegador Safari/Chrome</div>
-        </div>
-        <hr class="card-divider" />
-        <div class="download-section">
-          <p class="dl-section-title">Acceso Remoto</p>
-          <div class="dl-blocks">
-            <div class="dl-block">
-              <div class="dl-block-title">🌐 Enlace del Reproductor Web</div>
-              <div class="dl-row">
-                <span class="dl-link">Escribinos para solicitar la URL de acceso directo</span>
-              </div>
-              <div class="demo-pill">✨ No requiere espacio en disco</div>
-            </div>
-          </div>
-        </div>
-        <div class="compat-row">
-          <div class="compat-tag"><span class="compat-dot"></span> iPhone / iPad</div>
-          <div class="compat-tag"><span class="compat-dot"></span> Windows / Mac</div>
-          <div class="compat-tag"><span class="compat-dot"></span> WebOS / Tizen</div>
-        </div>
-        <div class="version-bar">
-          <span>Versión: Web Player v3.0</span>
-          <span>Peso: 0 MB</span>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="divider reveal vis" id="tutorial"><span>Guía de Instalación</span></div>
-
-    <!-- PASOS DE INSTALACIÓN Y TUTORIAL TV -->
-    <div class="how reveal vis">
-      <h2 class="how-title">Cómo funciona</h2>
-      <div class="step">
-        <div class="step-n">1</div>
-        <div class="step-body"><h3>Seleccioná tu App</h3><p>Elegí la versión del catálogo de arriba que mejor se adapte a tu conexión y equipo.</p></div>
-      </div>
-      <div class="step">
-        <div class="step-n">2</div>
-        <div class="step-body"><h3>Instalá el archivo</h3><p>Descargá e instalá el APK directamente en tu celular o mediante códigos en televisores.</p></div>
-      </div>
-      <div class="step">
-        <div class="step-n">3</div>
-        <div class="step-body"><h3>Pedí tu acceso gratis</h3><p>Hacé clic en el botón de WhatsApp para comunicarte con nosotros y te activamos una cuenta demo al instante.</p></div>
-      </div>
-
-      <!-- TV Tutorial Integrado -->
-      <div class="tv-tutorial">
-        <div class="tv-tutorial-header">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          Instalación Especial en Smart TV / TV Box
-        </div>
-
-        <div class="tv-step">
-          <div class="tv-step-ico">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3.18 23.5c.3.17.65.2.98.08L15.94 12 12 8.06 3.18 23.5z" fill="#EA4335"/>
-              <path d="M20.5 10.22 17.3 8.39 13.06 12l4.24 4.24 3.2-1.83a1.88 1.88 0 0 0 0-3.2z" fill="#FBBC04"/>
-              <path d="M3.18.5A1.88 1.88 0 0 0 2.5 2v20a1.88 1.88 0 0 0 .68 1.5L15.94 12 3.18.5z" fill="#4285F4"/>
-              <path d="M3.18.5 12 8.06 15.94 12l1.36-1.36-3.2-1.83L3.18.5z" fill="#34A853"/>
-            </svg>
-          </div>
-          <div class="tv-step-body">Entrá al <strong>Google Play Store</strong> de tu televisor. Buscá e instalá la app oficial llamada:
-            <span class="tv-downloader-wrap">
-              <img class="tv-downloader-ico" src="https://play-lh.googleusercontent.com/8GH0RvjdKu8UAx4rBQ5SwSNQkLwz7cZxH6K5yxxZVczAzLEteOJk7G2vHos6j7nNdKA" alt="Downloader" />
-              <strong>DOWNLOADER</strong>
-            </span>.
-          </div>
-        </div>
-
-        <div class="tv-step">
-          <div class="tv-step-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/>
-              <line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/>
-            </svg>
-          </div>
-          <div class="tv-step-body">Abrí la aplicación Downloader, posicionate sobre la barra de búsqueda url e ingresá el <strong>código numérico</strong> de la app elegida de nuestra lista de arriba (por ejemplo, para TV 1 usá el <strong class="tv-code">2491339</strong>).</div>
-        </div>
-
-        <div class="tv-step">
-          <div class="tv-step-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/>
-            </svg>
-          </div>
-          <div class="tv-step-body">Aceptá la redirección automática y esperá <strong>5 segundos</strong> a que comience la descarga remota del sistema.</div>
-        </div>
-
-        <div class="tv-step">
-          <div class="tv-step-ico">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              <polyline points="9 12 11 14 15 10"/>
-            </svg>
-          </div>
-          <div class="tv-step-body">Una vez que finalice el proceso, hacé clic en <strong>Instalar</strong>. Recordá habilitar los permisos de orígenes desconocidos si tu sistema te lo solicita por seguridad.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECCIÓN CTA FINAL -->
-    <div class="cta reveal vis">
       <div>
-        <h3>¿Ya instalaste<br>tu aplicación?</h3>
-        <p>Escribinos ahora por WhatsApp y te generamos tu usuario de demostración al instante.</p>
+        <h3 class="app-name">ZYRON 4K</h3>
+        <p class="app-cat">TV en vivo · Alta calidad</p>
       </div>
-      <div class="cta-btns">
-        <a class="btn-wa" href="https://wa.me/5492945649590?text=Hola%20vengo%20de%20la%20pagina.%20Quiero%20mas%20info!" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 32 32" fill="#fff"><path d="M16 3C9.38 3 4 8.18 4 14.56c0 2.5.86 4.82 2.33 6.69L5 29l7.96-1.99c1.83.97 3.92 1.53 6.14 1.53C25.62 28.54 31 23.36 31 16.98 31 10.6 25.62 3 16 3zm0 23.2c-2.08 0-4.02-.55-5.68-1.51l-.41-.24-4.73 1.18 1.26-4.57-.27-.44a10.4 10.4 0 0 1-1.66-5.62C4.51 9.33 9.57 4.7 16 4.7s11.49 4.63 11.49 10.3S22.43 26.2 16 26.2z"/><path d="M22.1 18.16c-.33-.16-1.95-.95-2.25-1.07-.3-.11-.52-.16-.74.16-.22.32-.85 1.07-1.04 1.29-.19.22-.38.25-.7.09-.33-.16-1.38-.51-2.64-1.62-.98-.86-1.63-1.92-1.82-2.25-.19-.32-.02-.5.14-.67.14-.14.33-.38.5-.56.16-.19.22-.32.33-.54.11-.22.06-.41-.02-.58-.08-.16-.74-1.8-1.01-2.46-.27-.65-.54-.56-.74-.57h-.64c-.22 0-.59.09-.9.41-.3.32-1.16 1.14-1.16 2.78s1.19 3.24 1.35 3.46c.16.22 2.35 3.6 5.7 5.04.79.35 1.42.54 1.9.7.81.25 1.54.22 2.12.13.65-.1 1.95-.8 2.21-1.57.27-.77.27-1.42.19-1.56-.08-.14-.3-.22-.62-.38z"/></svg>
-          Solicitar Prueba Gratis
-        </a>
+      <p class="app-desc">App Tv en Vivo, Peliculas y series</p>
+      <div class="tags">
+        <span class="tag">HD</span>
+        <span class="tag">Live TV</span>
+        <span class="tag">+50MB</span>
+        <span class="tag">Fibra</span>
       </div>
-    </div>
+      <div class="downloader-code">
+        <em>Cód. Downloader</em>
+        <span>9276584</span>
+      </div>
+      <a class="download-btn" href="http://aftv.news/9276584" target="_blank" rel="noopener">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/>
+        </svg>
+        DESCARGAR APK
+      </a>
+    </article>
+
+    <!-- LIKE TV -->
+    <article class="app-card"
+      style="--card-glow:rgba(255,208,96,.15);--card-accent:linear-gradient(90deg,#ffd060,#ffa822);--card-shadow:rgba(255,208,96,.22)"
+      data-name="LIKE TV" data-icon="📡">
+      <div class="card-top">
+        <div class="app-logo">
+          <img src="https://github.com/Lichaaos23/zyronstreamapps/blob/main/img/liketv.png?raw=true"
+               alt="LIKE TV" onerror="this.parentElement.textContent='📡'">
+        </div>
+        <span class="app-num">02</span>
+      </div>
+      <div>
+        <h3 class="app-name">LIKE TV</h3>
+        <p class="app-cat">TV en vivo</p>
+      </div>
+      <p class="app-desc">App Tv en Vivo, Peliculas y series</p>
+      <div class="tags">
+        <span class="tag">Estable</span>
+        <span class="tag">+5MB</span>
+        <span class="tag">Live TV</span>
+        <span class="tag">Móvil</span>
+      </div>
+      <div class="downloader-code">
+        <em>Cód. Downloader</em>
+        <span>4791224</span>
+      </div>
+      <a class="download-btn" href="http://aftv.news/4791224" target="_blank" rel="noopener">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/>
+        </svg>
+        DESCARGAR APK
+      </a>
+    </article>
+
+    <!-- FLUJO TV -->
+    <article class="app-card"
+      style="--card-glow:rgba(255,79,110,.18);--card-accent:linear-gradient(90deg,#ff4f6e,#ff2d55);--card-shadow:rgba(255,79,110,.25)"
+      data-name="FLUJO TV" data-icon="📡">
+      <div class="card-top">
+        <div class="app-logo">
+          <img src="https://github.com/Lichaaos23/zyronstreamapps/blob/main/img/fujotv.png?raw=true"
+               alt="FLUJO TV" onerror="this.parentElement.textContent='📡'">
+        </div>
+        <span class="app-num">03</span>
+      </div>
+      <div>
+        <h3 class="app-name">FLUJO TV</h3>
+        <p class="app-cat">TV en vivo · Streaming</p>
+      </div>
+      <p class="app-desc">Contenido fluido y estable en alta definición. TV en vivo, películas y series sin interrupciones.</p>
+      <div class="tags">
+        <span class="tag">HD</span>
+        <span class="tag">Live TV</span>
+        <span class="tag">Android</span>
+      </div>
+      <div class="downloader-code">
+        <em>Cód. Downloader</em>
+        <span>9249124</span>
+      </div>
+      <a class="download-btn" href="http://aftv.news/9249124" target="_blank" rel="noopener">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/>
+        </svg>
+        DESCARGAR APK
+      </a>
+    </article>
+
+    <!-- CINEFLIX -->
+    <article class="app-card"
+      style="--card-glow:rgba(162,89,255,.20);--card-accent:linear-gradient(90deg,#a259ff,#7c3aed);--card-shadow:rgba(162,89,255,.28)"
+      data-name="CINEFLIX" data-icon="🎬">
+      <div class="card-top">
+        <div class="app-logo">
+          <img src="https://github.com/Lichaaos23/zyronstreamapps/blob/main/img/cineflix.png?raw=true"
+               alt="CINEFLIX" onerror="this.parentElement.textContent='🎬'">
+        </div>
+        <span class="app-num">04</span>
+      </div>
+      <div>
+        <h3 class="app-name">CINEFLIX</h3>
+        <p class="app-cat">Películas y Series</p>
+      </div>
+      <p class="app-desc">Requiere conexión de +20MB para funcionar de forma fluida. Miles de títulos en HD y 4K bajo demanda.</p>
+      <div class="tags">
+        <span class="tag">4K</span>
+        <span class="tag">VOD</span>
+        <span class="tag">+20MB</span>
+        <span class="tag">Series</span>
+      </div>
+      <div class="downloader-code">
+        <em>Cód. Downloader</em>
+        <span>3088362</span>
+      </div>
+      <a class="download-btn" href="https://aftv.news/3088362" target="_blank" rel="noopener">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/>
+        </svg>
+        DESCARGAR APK
+      </a>
+    </article>
+
+    <!-- NEXT-FLIX -->
+    <article class="app-card"
+      style="--card-glow:rgba(229,9,20,.20);--card-accent:linear-gradient(90deg,#e50914,#b81d24);--card-shadow:rgba(229,9,20,.28)"
+      data-name="NEXT-FLIX" data-icon="📦">
+      <div class="card-top">
+        <div class="app-logo">
+          <img src="https://images.ctfassets.net/4cd45et68cgf/Rx83JoRDMkYNlMC9MKzcB/2b14d5a59fc3937afd3f03191e19502d/Netflix-Symbol.png?w=200"
+               alt="NEXT-FLIX" onerror="this.parentElement.textContent='📦'">
+        </div>
+        <span class="app-num">05</span>
+      </div>
+      <div>
+        <h3 class="app-name">NEXT-FLIX</h3>
+        <p class="app-cat">Streaming · Películas</p>
+      </div>
+      <p class="app-desc">Acceso rápido a contenido de entretenimiento con una presentación limpia, moderna y fácil de usar.</p>
+      <div class="tags">
+        <span class="tag">HD</span>
+        <span class="tag">4K</span>
+        <span class="tag">Android</span>
+      </div>
+      <div class="downloader-code">
+        <em>Cód. Downloader</em>
+        <span>4991989</span>
+      </div>
+      <a class="download-btn" href="https://aftv.news/4991989" target="_blank" rel="noopener">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/>
+        </svg>
+        DESCARGAR APK
+      </a>
+    </article>
+
+    <!-- FLOW -->
+    <article class="app-card"
+      style="--card-glow:rgba(0,120,212,.20);--card-accent:linear-gradient(90deg,#0078d4,#005a9e);--card-shadow:rgba(0,120,212,.28)"
+      data-name="FLOW" data-icon="📺">
+      <div class="card-top">
+        <div class="app-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Flow_2021.jpg"
+               alt="FLOW" onerror="this.parentElement.textContent='📺'">
+        </div>
+        <span class="app-num">06</span>
+      </div>
+      <div>
+        <h3 class="app-name">FLOW</h3>
+        <p class="app-cat">Streaming · Cable Digital</p>
+      </div>
+      <p class="app-desc">La plataforma de Flow en tu dispositivo Android. TV en vivo, películas y series en un solo lugar.</p>
+      <div class="tags">
+        <span class="tag">HD</span>
+        <span class="tag">Live TV</span>
+        <span class="tag">Android</span>
+      </div>
+      <div class="downloader-code">
+        <em>Cód. Downloader</em>
+        <span>— Próximamente —</span>
+      </div>
+      <button class="download-btn" style="opacity:.6;cursor:not-allowed;" disabled>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/>
+        </svg>
+        PRÓXIMAMENTE
+      </button>
+    </article>
+
+    <!-- CANVA PRO -->
+    <article class="app-card"
+      style="--card-glow:rgba(0,195,168,.18);--card-accent:linear-gradient(90deg,#00c3a8,#00a896);--card-shadow:rgba(0,195,168,.25)"
+      data-name="CANVA PRO" data-icon="🎨">
+      <div class="card-top">
+        <div class="app-logo">
+          <img src="https://edudigital.pro/wp-content/uploads/2024/03/CANVAPRO.png"
+               alt="CANVA PRO" onerror="this.parentElement.textContent='🎨'">
+        </div>
+        <span class="app-num">07</span>
+      </div>
+      <div>
+        <h3 class="app-name">CANVA PRO</h3>
+        <p class="app-cat">Diseño · Creatividad</p>
+      </div>
+      <p class="app-desc">Diseñá gráficos, presentaciones y contenido visual de forma fácil y profesional desde tu dispositivo.</p>
+      <div class="tags">
+        <span class="tag">Diseño</span>
+        <span class="tag">Pro</span>
+        <span class="tag">Android</span>
+      </div>
+      <div class="downloader-code">
+        <em>Cód. Downloader</em>
+        <span>— Próximamente —</span>
+      </div>
+      <button class="download-btn" style="opacity:.6;cursor:not-allowed;" disabled>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/>
+        </svg>
+        PRÓXIMAMENTE
+      </button>
+    </article>
+
+    <!-- SPOTIFY -->
+    <article class="app-card"
+      style="--card-glow:rgba(0,232,155,.18);--card-accent:linear-gradient(90deg,#00e89b,#1db954);--card-shadow:rgba(0,232,155,.25)"
+      data-name="SPOTIFY" data-icon="🎵">
+      <div class="card-top">
+        <div class="app-logo">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv-ojvgheqFF4jc5EM9MYcOkULjVY3oG2hzw&s"
+               alt="SPOTIFY" onerror="this.parentElement.textContent='🎵'">
+        </div>
+        <span class="app-num">08</span>
+      </div>
+      <div>
+        <h3 class="app-name">SPOTIFY</h3>
+        <p class="app-cat">Música · Podcasts</p>
+      </div>
+      <p class="app-desc">La mejor experiencia de música y podcasts en tu dispositivo Android. Escuchá sin cortes ni publicidad.</p>
+      <div class="tags">
+        <span class="tag">Música</span>
+        <span class="tag">Audio</span>
+        <span class="tag">Podcast</span>
+      </div>
+      <div class="downloader-code">
+        <em>Cód. Downloader</em>
+        <span>— Próximamente —</span>
+      </div>
+      <button class="download-btn" style="opacity:.6;cursor:not-allowed;" disabled>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/>
+        </svg>
+        PRÓXIMAMENTE
+      </button>
+    </article>
+
+    <!-- ZYRON TUBE -->
+    <article class="app-card"
+      style="--card-glow:rgba(255,140,66,.17);--card-accent:linear-gradient(90deg,#ff8c42,#ff6b1a);--card-shadow:rgba(255,140,66,.25)"
+      data-name="ZYRON TUBE" data-icon="▶️">
+      <div class="card-top">
+        <div class="app-logo">
+          <img src="https://img.magnific.com/vector-premium/logotipo-redondo-youtube-aislado-fondo-blanco_469489-983.jpg?semt=ais_hybrid&w=740&q=80"
+               alt="ZYRON TUBE" onerror="this.parentElement.textContent='▶️'">
+        </div>
+        <span class="app-num">09</span>
+      </div>
+      <div>
+        <h3 class="app-name">ZYRON TUBE</h3>
+        <p class="app-cat">Video · Reproductor 8K</p>
+      </div>
+      <p class="app-desc">Reproductor de video avanzado compatible hasta 8K. Interfaz limpia y rápida, sin publicidad invasiva.</p>
+      <div class="tags">
+        <span class="tag">Video</span>
+        <span class="tag">8K</span>
+        <span class="tag">Player</span>
+      </div>
+      <div class="downloader-code">
+        <em>Cód. Downloader</em>
+        <span>— Próximamente —</span>
+      </div>
+      <button class="download-btn" style="opacity:.6;cursor:not-allowed;" disabled>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/>
+        </svg>
+        PRÓXIMAMENTE
+      </button>
+    </article>
 
   </div>
 
-  <!-- BOTÓN FLOTANTE SUTÍL -->
-  <div class="fabs">
-    <a class="fab" href="https://wa.me/5492945649590?text=Hola%20vengo%20de%20la%20página.%20Quiero%20más%20info de la aplicación!" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
-      <span class="fab-icon">
-        <svg viewBox="0 0 32 32" fill="#fff"><path d="M16 3C9.38 3 4 8.18 4 14.56c0 2.5.86 4.82 2.33 6.69L5 29l7.96-1.99c1.83.97 3.92 1.53 6.14 1.53C25.62 28.54 31 23.36 31 16.98 31 10.6 25.62 3 16 3zm0 23.2c-2.08 0-4.02-.55-5.68-1.51l-.41-.24-4.73 1.18 1.26-4.57-.27-.44a10.4 10.4 0 0 1-1.66-5.62C4.51 9.33 9.57 4.7 16 4.7s11.49 4.63 11.49 10.3S22.43 26.2 16 26.2z"/><path d="M22.1 18.16c-.33-.16-1.95-.95-2.25-1.07-.3-.11-.52-.16-.74.16-.22.32-.85 1.07-1.04 1.29-.19.22-.38.25-.7.09-.33-.16-1.38-.51-2.64-1.62-.98-.86-1.63-1.92-1.82-2.25-.19-.32-.02-.5.14-.67.14-.14.33-.38.5-.56.16-.19.22-.32.33-.54.11-.22.06-.41-.02-.58-.08-.16-.74-1.8-1.01-2.46-.27-.65-.54-.56-.74-.57h-.64c-.22 0-.59.09-.9.41-.3.32-1.16 1.14-1.16 2.78s1.19 3.24 1.35 3.46c.16.22 2.35 3.6 5.7 5.04.79.35 1.42.54 1.9.7.81.25 1.54.22 2.12.13.65-.1 1.95-.8 2.21-1.57.27-.77.27-1.42.19-1.56-.08-.14-.3-.22-.62-.38z"/></svg>
-      </span>
-      WhatsApp
-    </a>
-  </div>
+</main>
 
-  <script>
-    // Animación sutil de aparición al hacer scroll
-    const els = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
-    }, { threshold: .10 });
-    els.forEach(el => io.observe(el));
-  </script>
+<footer>© 2026 ZYRON STREAM — Todos los derechos reservados</footer>
+
+<script>
+  // Direct link buttons (anchors) handle navigation natively.
+  // Disabled buttons show "próximamente" state.
+</script>
 </body>
 </html>
