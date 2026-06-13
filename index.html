@@ -585,6 +585,51 @@
     }
     .modal-close:hover { filter: brightness(.9); }
 
+    /* Internet Ilimitado special styling */
+    .internet-logo {
+      background: linear-gradient(135deg, rgba(0,229,255,.15), rgba(162,89,255,.15)) !important;
+      border: 1px solid rgba(0,229,255,.3) !important;
+      box-shadow: 0 0 24px rgba(0,229,255,.2);
+    }
+    .internet-icon {
+      font-size: 42px;
+      filter: drop-shadow(0 0 12px rgba(0,229,255,.6));
+    }
+    .internet-card {
+      border-color: rgba(0,229,255,.2) !important;
+    }
+    .internet-compat {
+      background: rgba(0,229,255,.06);
+      border: 1px solid rgba(0,229,255,.15);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .compat-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+    .compat-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .compat-pill {
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      background: rgba(0,229,255,.12);
+      border: 1px solid rgba(0,229,255,.3);
+      color: var(--cyan);
+    }
+
     @media (max-width:900px) {
       .apps-grid { grid-template-columns: repeat(2,1fr); }
     }
@@ -915,14 +960,14 @@
      
     </article>
 
-    <!-- SPOTIFY -->
+    <!-- SPOTUBE -->
     <article class="app-card"
       style="--card-glow:rgba(0,232,155,.18);--card-accent:linear-gradient(90deg,#00e89b,#1db954);--card-shadow:rgba(0,232,155,.25)"
-      data-name="SPOTIFY" data-icon="🎵">
+      data-name="SPOTUBE" data-icon="🎵">
       <div class="card-top">
         <div class="app-logo">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv-ojvgheqFF4jc5EM9MYcOkULjVY3oG2hzw&s"
-               alt="SPOTIFY" onerror="this.parentElement.textContent='🎵'">
+               alt="SPOTUBE" onerror="this.parentElement.textContent='🎵'">
         </div>
         <span class="app-num">08</span>
       </div>
@@ -932,15 +977,15 @@
       </div>
       <p class="app-desc">La mejor experiencia de música y podcasts en tu dispositivo Android. Escuchá sin cortes ni publicidad.</p>
       <div class="tags">
-        <span class="tag">Música</span>
-        <span class="tag">Audio/Video</span>
-        <span class="tag">Podcast</span>
+        <span class="tag">🎵 Música</span>
+        <span class="tag">🎬 Audio/Video</span>
+        <span class="tag">🎙️ Podcast</span>
       </div>
-        <a class="download-btn" href="https://go.aftvnews.com/8362991" target="_blank" rel="noopener">
+      <div class="downloader-code">
         <em>Cód. Downloader</em>
         <span>8362991</span>
       </div>
-      <button class="download-btn" style="opacity:.6;cursor:not-allowed;" disabled>
+      <a class="download-btn" href="https://go.aftvnews.com/8362991" target="_blank" rel="noopener">
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/>
         </svg>
@@ -948,25 +993,29 @@
       </a>
     </article>
 
-    <!-- INTERNET -->
-    <article class="app-card"
-      style="--card-glow:rgba(255,140,66,.17);--card-accent:linear-gradient(90deg,#ff8c42,#ff6b1a);--card-shadow:rgba(255,140,66,.25)"
-      data-name="INTERNET" data-icon="▶️">
+    <!-- INTERNET ILIMITADO -->
+    <article class="app-card internet-card"
+      style="--card-glow:rgba(0,229,255,.22);--card-accent:linear-gradient(90deg,#00e5ff,#a259ff);--card-shadow:rgba(0,229,255,.30)"
+      data-name="INTERNET" data-icon="🌐">
       <div class="card-top">
-        <div class="app-logo">
-          <img src="https://img.magnific.com/vector-premium/logotipo-redondo-youtube-aislado-fondo-blanco_469489-983.jpg?semt=ais_hybrid&w=740&q=80"
-               alt="INTERNET ILIMITADO" onerror="this.parentElement.textContent='▶️'">
+        <div class="app-logo internet-logo">
+          <span class="internet-icon">🌐</span>
         </div>
         <span class="app-num">09</span>
       </div>
       <div>
         <h3 class="app-name">INTERNET ILIMITADO</h3>
-        <p class="app-cat">Es un servicio de conectividad para dispositivos Android que te permite acceder a tus aplicaciones, redes sociales, música, videos y contenido online con una experiencia rápida, estable y segura.
-</p>
+        <p class="app-cat">Conectividad · Android · Personal</p>
       </div>
-      <p class="app-desc">📱 Compatible con:
-* Android
-* Líneas Personal Prepago y Abono.</p>
+      <p class="app-desc">Servicio de conectividad para dispositivos Android que te permite acceder a tus aplicaciones, redes sociales, música, videos y contenido online con una experiencia rápida, estable y segura.</p>
+      <div class="internet-compat">
+        <span class="compat-label">📱 Compatible con:</span>
+        <div class="compat-pills">
+          <span class="compat-pill">Android</span>
+          <span class="compat-pill">Líneas Personal Prepago</span>
+          <span class="compat-pill">Líneas Personal Abono</span>
+        </div>
+      </div>
       <div class="tags">
         <span class="tag">✅ Internet sin límites</span>
         <span class="tag">⚡ Máximo rendimiento</span>
@@ -981,7 +1030,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/>
         </svg>
         PRÓXIMAMENTE
-      </a>
+      </button>
     </article>
 
   </div>
